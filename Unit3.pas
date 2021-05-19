@@ -38,6 +38,7 @@ type
     procedure Edit2Change(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
     procedure Button2Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -124,6 +125,11 @@ procedure Ttnk.FormActivate(Sender: TObject);
 begin
 pagecontrol1.Visible:=false;
 pagecontrol1.Visible:=true;
+end;
+
+procedure Ttnk.FormCreate(Sender: TObject);
+begin
+adoquery1.Active:=true;
 end;
 
 end.

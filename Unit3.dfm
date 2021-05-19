@@ -15,6 +15,7 @@ object tnk: Ttnk
   OldCreateOrder = False
   Position = poDesktopCenter
   OnActivate = FormActivate
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object PageControl1: TPageControl
@@ -25,12 +26,8 @@ object tnk: Ttnk
     ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 919
-    ExplicitHeight = 703
     object TabSheet1: TTabSheet
       Caption = #1058#1053#1050
-      ExplicitWidth = 911
-      ExplicitHeight = 675
       object DBGrid1: TDBGrid
         Left = 0
         Top = 0
@@ -94,8 +91,6 @@ object tnk: Ttnk
         Align = alClient
         Caption = #1056#1072#1089#1095#1077#1090' '#1088#1072#1073#1086#1095#1077#1075#1086' '#1074#1088#1077#1084#1077#1085#1080' '#1080' '#1086#1073#1098#1077#1084#1086#1074
         TabOrder = 1
-        ExplicitWidth = 911
-        ExplicitHeight = 189
         object DBText1: TDBText
           Left = 504
           Top = 62
@@ -208,7 +203,7 @@ object tnk: Ttnk
           Left = 688
           Top = 38
           Width = 177
-          Height = 23
+          Height = 24
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -223,7 +218,7 @@ object tnk: Ttnk
           Left = 688
           Top = 89
           Width = 177
-          Height = 23
+          Height = 24
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -250,7 +245,6 @@ object tnk: Ttnk
           Font.Style = []
           ParentFont = False
           TabOrder = 2
-          ExplicitHeight = 172
         end
         object CheckBox1: TCheckBox
           Left = 504
@@ -282,15 +276,12 @@ object tnk: Ttnk
     object TabSheet2: TTabSheet
       Caption = #1058#1053#1050' '#1080#1079#1073#1088#1072#1085#1085#1086#1077
       ImageIndex = 1
-      ExplicitHeight = 675
     end
   end
   object ADOConnection1: TADOConnection
-    Connected = True
     ConnectionString = 
-      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\roman\Des' +
-      'ktop\DISK\Win32\Debug\DB\isspdb.accdb;Persist Security Info=Fals' +
-      'e'
+      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=isspdb.accdb;Persi' +
+      'st Security Info=False;'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.ACE.OLEDB.12.0'
@@ -298,7 +289,6 @@ object tnk: Ttnk
     Top = 72
   end
   object ADOQuery1: TADOQuery
-    Active = True
     Connection = ADOConnection1
     CursorType = ctStatic
     Parameters = <>
