@@ -253,6 +253,7 @@ object tnk: Ttnk
           Height = 17
           Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1074' '#1080#1079#1073#1088#1072#1085#1085#1086#1077'?'
           TabOrder = 3
+          OnClick = CheckBox1Click
         end
         object Button1: TButton
           Left = 688

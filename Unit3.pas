@@ -39,6 +39,7 @@ type
     procedure DBGrid1CellClick(Column: TColumn);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -55,6 +56,21 @@ implementation
 procedure Ttnk.Button2Click(Sender: TObject);
 begin
 tnk.Close;
+end;
+
+procedure Ttnk.CheckBox1Click(Sender: TObject);
+var
+i:integer;
+a:string;
+begin
+a:=dbgrid1.DataSource.DataSet.Fields.Fields[i].Value;
+if checkbox1.Checked=true then
+  begin
+    adoquery1.Close;
+    adoquery1.SQL.Clear;
+    adoquery1.SQL.Add('update TNK set fav="yes" where id=1');
+    adoquery1.ExecSQL;
+  end;
 end;
 
 procedure Ttnk.DBGrid1CellClick(Column: TColumn);
