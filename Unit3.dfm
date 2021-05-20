@@ -277,6 +277,10 @@ object tnk: Ttnk
     object TabSheet2: TTabSheet
       Caption = #1058#1053#1050' '#1080#1079#1073#1088#1072#1085#1085#1086#1077
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
     end
   end
   object ADOConnection1: TADOConnection
@@ -302,5 +306,11 @@ object tnk: Ttnk
     DataSet = ADOQuery1
     Left = 248
     Top = 72
+  end
+  object ADOQuery2: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 164
+    Top = 128
   end
 end

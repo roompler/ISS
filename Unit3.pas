@@ -31,6 +31,7 @@ type
     Label4: TLabel;
     Button1: TButton;
     Button2: TButton;
+    ADOQuery2: TADOQuery;
     procedure FormActivate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
@@ -66,17 +67,28 @@ begin
 a:=dbgrid1.DataSource.DataSet.Fields.Fields[i].Value;
 if checkbox1.Checked=true then
   begin
-    adoquery1.Close;
-    adoquery1.SQL.Clear;
-    adoquery1.SQL.Add('update TNK set fav="yes" where id=1');
-    adoquery1.ExecSQL;
+    adoquery2.Close;
+    adoquery2.SQL.Clear;
+    adoquery2.SQL.Add('update TNK set fav="yes" where id='+a);
+    adoquery2.ExecSQL;
+    dbgrid1.SetFocus;
   end;
 end;
 
 procedure Ttnk.DBGrid1CellClick(Column: TColumn);
+var
+a :string;
 begin
 edit1.Clear;
 edit2.Clear;
+a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
+
+if a='yes' then begin
+  checkbox1.Checked:=true;
+end
+else
+checkbox1.Checked:=false;
+
 end;
 
 procedure Ttnk.Edit1Change(Sender: TObject);
