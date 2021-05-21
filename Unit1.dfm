@@ -4,7 +4,7 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = #1048#1057#1057' '#1057#1058#1056#1045#1051#1040'-'#1052
-  ClientHeight = 316
+  ClientHeight = 296
   ClientWidth = 639
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -2130,14 +2130,13 @@ object Form1: TForm1
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poDesktopCenter
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Image1: TImage
     Left = 0
     Top = 0
     Width = 639
-    Height = 316
+    Height = 296
     Align = alClient
     Picture.Data = {
       0A544A504547496D6167655DA10000FFD8FFE000104A46494600010101000100

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>1899.12.30 00:00:00.000.671,=C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.322,C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Unit1.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.713,C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\ISS.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.226,=C:\Users\roman\Desktop\ISS\ISS\Unit3.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.051,=C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Unit2.pas</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.611,C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Win32\Debug\chart.ico=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.322,C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Unit1.dfm=C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.226,=C:\Users\roman\Desktop\ISS\ISS\Unit3.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.671,=C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>1899.12.30 00:00:00.000.324,=C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Win32\Debug\chart.ico</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.713,C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\ISS.dproj=C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.322,C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Unit1.pas=C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.611,C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Win32\Debug\chart.ico=</Transaction>
     <Transaction>1899.12.30 00:00:00.000.895,C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\ISS.dproj=C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\ISS.dproj</Transaction>
-    <Transaction>1899.12.30 00:00:00.000.322,C:\Users\myriv\OneDrive\Документы\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\myriv\OneDrive\Рабочий стол\для по\ISS\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

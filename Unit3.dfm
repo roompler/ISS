@@ -26,6 +26,7 @@ object tnk: Ttnk
     ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
+    OnChange = PageControl1Change
     object TabSheet1: TTabSheet
       Caption = #1058#1053#1050
       object DBGrid1: TDBGrid
@@ -279,7 +280,6 @@ object tnk: Ttnk
     object TabSheet2: TTabSheet
       Caption = #1058#1053#1050' '#1080#1079#1073#1088#1072#1085#1085#1086#1077
       ImageIndex = 1
-      OnShow = TabSheet2Show
       object DBGrid2: TDBGrid
         Left = 0
         Top = 0
@@ -299,8 +299,9 @@ object tnk: Ttnk
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
-        OnGesture = DBGrid1Gesture
-        OnKeyUp = DBGrid1KeyUp
+        OnCellClick = DBGrid2CellClick
+        OnGesture = DBGrid2Gesture
+        OnKeyUp = DBGrid2KeyUp
         Columns = <
           item
             Expanded = False
@@ -350,7 +351,7 @@ object tnk: Ttnk
           Width = 65
           Height = 25
           DataField = 'norm'
-          DataSource = DataSource1
+          DataSource = DataSource2
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -364,7 +365,7 @@ object tnk: Ttnk
           Width = 41
           Height = 25
           DataField = 'izmer'
-          DataSource = DataSource1
+          DataSource = DataSource2
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -378,7 +379,7 @@ object tnk: Ttnk
           Width = 74
           Height = 17
           DataField = 'edizmer'
-          DataSource = DataSource1
+          DataSource = DataSource2
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -12
@@ -418,7 +419,7 @@ object tnk: Ttnk
           Width = 129
           Height = 17
           DataField = 'tnk'
-          DataSource = DataSource1
+          DataSource = DataSource2
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -464,8 +465,8 @@ object tnk: Ttnk
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 0
-          OnChange = Edit1Change
-          OnKeyPress = Edit1KeyPress
+          OnChange = Edit3Change
+          OnKeyPress = Edit3KeyPress
         end
         object Edit4: TEdit
           Left = 688
@@ -479,8 +480,8 @@ object tnk: Ttnk
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 1
-          OnChange = Edit2Change
-          OnKeyPress = Edit2KeyPress
+          OnChange = Edit4Change
+          OnKeyPress = Edit4KeyPress
         end
         object DBMemo2: TDBMemo
           Left = 2
@@ -490,7 +491,7 @@ object tnk: Ttnk
           Align = alLeft
           Color = clCream
           DataField = 'opis'
-          DataSource = DataSource1
+          DataSource = DataSource2
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Height = -19
@@ -499,21 +500,13 @@ object tnk: Ttnk
           ParentFont = False
           TabOrder = 2
         end
-        object CheckBox2: TCheckBox
-          Left = 504
-          Top = 132
-          Width = 137
-          Height = 17
-          Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1074' '#1080#1079#1073#1088#1072#1085#1085#1086#1077'?'
-          TabOrder = 3
-        end
         object Button3: TButton
           Left = 688
           Top = 124
           Width = 81
           Height = 25
           Caption = #1057#1086#1079#1076#1072#1090#1100' '#1056#1047
-          TabOrder = 4
+          TabOrder = 3
         end
         object Button4: TButton
           Left = 784
@@ -521,8 +514,18 @@ object tnk: Ttnk
           Width = 81
           Height = 25
           Caption = #1042#1099#1093#1086#1076
-          TabOrder = 5
+          TabOrder = 4
           OnClick = Button2Click
+        end
+        object Button5: TButton
+          Left = 504
+          Top = 124
+          Width = 137
+          Height = 25
+          Caption = #1059#1076#1072#1083#1080#1090#1100' '#1080#1079' '#1080#1079#1073#1088#1072#1085#1085#1086#1075#1086
+          Enabled = False
+          TabOrder = 5
+          OnClick = Button5Click
         end
       end
     end
@@ -535,8 +538,8 @@ object tnk: Ttnk
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.ACE.OLEDB.12.0'
-    Left = 88
-    Top = 72
+    Left = 168
+    Top = 65520
   end
   object ADOQuery1: TADOQuery
     Active = True
@@ -545,44 +548,31 @@ object tnk: Ttnk
     Parameters = <>
     SQL.Strings = (
       'select * from tnk;')
-    Left = 160
-    Top = 72
+    Left = 240
   end
   object DataSource1: TDataSource
     DataSet = ADOQuery1
-    Left = 248
-    Top = 72
+    Left = 304
   end
   object ADOQuery2: TADOQuery
     Connection = ADOConnection1
     Parameters = <>
-    Left = 164
-    Top = 128
+    Left = 236
+    Top = 48
   end
   object ADOQuery3: TADOQuery
     Active = True
-    Connection = ADOConnection2
+    Connection = ADOConnection1
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'select * from tnk where fav=yes;')
-    Left = 156
-    Top = 192
+      'select * from tnk where fav="yes";')
+    Left = 236
+    Top = 96
   end
   object DataSource2: TDataSource
     DataSet = ADOQuery3
-    Left = 228
-    Top = 192
-  end
-  object ADOConnection2: TADOConnection
-    Connected = True
-    ConnectionString = 
-      'Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\ISS\Win32\Debug' +
-      '\isspdb.accdb;Persist Security Info=False;'
-    LoginPrompt = False
-    Mode = cmShareDenyNone
-    Provider = 'Microsoft.ACE.OLEDB.12.0'
-    Left = 72
-    Top = 192
+    Left = 308
+    Top = 96
   end
 end

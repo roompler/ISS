@@ -30,7 +30,6 @@ type
     N16: TMenuItem;
     procedure N4Click(Sender: TObject);
     procedure N15Click(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure N1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure N10Click(Sender: TObject);
@@ -49,12 +48,6 @@ implementation
 {$R *.dfm}
 
 uses Unit2, Unit3;
-
-procedure TForm1.FormCreate(Sender: TObject);
-begin
-tnk.ADOConnection1.Connected:=true;
-tnk.ADOConnection2.Connected:=true;
-end;
 
 procedure TForm1.N10Click(Sender: TObject);
 begin
