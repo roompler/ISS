@@ -120,12 +120,17 @@ i:integer;
 a:string;
 begin
 a:=dbgrid1.DataSource.DataSet.Fields.Fields[i].Value;
+if a='yes' then checkbox1.Checked:=true;
+if a='no' then checkbox1.Checked:=false;
+
 if checkbox1.Checked=true then
   begin
     adoquery2.Close;
     adoquery2.SQL.Clear;
     adoquery2.SQL.Add('update TNK set fav="yes" where id='+a);
     adoquery2.ExecSQL;
+
+
     dbgrid1.SetFocus;
   end;
 
@@ -134,6 +139,7 @@ if checkbox1.Checked=false then
   adoquery2.SQL.Clear;
     adoquery2.SQL.Add('update TNK set fav="no" where id='+a);
     adoquery2.ExecSQL;
+
     dbgrid1.SetFocus;
   end;
 end;
@@ -386,11 +392,11 @@ adoquery3.Active:=false;
 adoquery1.Active:=true;
 adoquery3.Active:=true;
 
-if dbgrid2.SetFocus=true then begin
+
 a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
 if a='yes' then button5.Enabled:=true;
 if a='no' then button5.Enabled:=false;
-end;
+
 end;
 
 end.

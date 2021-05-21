@@ -23,7 +23,7 @@ object tnk: Ttnk
     Top = 0
     Width = 881
     Height = 669
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     OnChange = PageControl1Change
