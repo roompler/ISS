@@ -52,16 +52,8 @@ uses Unit2, Unit3;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
-pathINI:=extractfilepath(application.ExeName)+'\config.ini';
-ini:=TIniFile.Create(pathINI);
-if ini.ReadString('Spider','Active','Ошибка чтения!')='true' then begin
-alphablend:=true;
-alphablendvalue:=100;
-end;
-if ini.ReadString('Spider','Active','Ошибка чтения!')='false' then begin
-alphablend:=false;
-end;
-ini.Free;
+tnk.ADOConnection1.Connected:=true;
+tnk.ADOConnection2.Connected:=true;
 end;
 
 procedure TForm1.N10Click(Sender: TObject);

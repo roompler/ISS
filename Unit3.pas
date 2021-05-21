@@ -32,6 +32,25 @@ type
     Button1: TButton;
     Button2: TButton;
     ADOQuery2: TADOQuery;
+    DBGrid2: TDBGrid;
+    GroupBox2: TGroupBox;
+    DBText5: TDBText;
+    DBText6: TDBText;
+    DBText7: TDBText;
+    Label5: TLabel;
+    Label6: TLabel;
+    DBText8: TDBText;
+    Label7: TLabel;
+    Label8: TLabel;
+    Edit3: TEdit;
+    Edit4: TEdit;
+    DBMemo2: TDBMemo;
+    CheckBox2: TCheckBox;
+    Button3: TButton;
+    Button4: TButton;
+    ADOQuery3: TADOQuery;
+    DataSource2: TDataSource;
+    ADOConnection2: TADOConnection;
     procedure FormActivate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
@@ -44,6 +63,7 @@ type
     procedure DBGrid1Gesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure DBGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure TabSheet2Show(Sender: TObject);
   private
     { Private declarations }
   public
@@ -137,6 +157,8 @@ if key=40 then begin
 end;
 
 
+
+
 procedure Ttnk.Edit1Change(Sender: TObject);
 var
 a,b,c:real;
@@ -183,7 +205,6 @@ a:=strtofloat(Edit2.Text);
 b:=strtofloat(dbtext1.Field.AsString);
 c:=strtofloat(dbtext2.Field.AsString);
 res:=(a/c)*b;
-
 edit1.Text:=floattostr(res);
 end;
 
@@ -212,7 +233,17 @@ end;
 procedure Ttnk.FormCreate(Sender: TObject);
 begin
 adoquery1.Active:=true;
-dbgrid1.SetFocus;
+
+
+end;
+
+
+
+
+procedure Ttnk.TabSheet2Show(Sender: TObject);
+begin
+adoquery3.Active:=false;
+adoquery3.Active:=true;
 end;
 
 end.
