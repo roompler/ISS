@@ -48,6 +48,8 @@ object tnk: Ttnk
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
         OnCellClick = DBGrid1CellClick
+        OnGesture = DBGrid1Gesture
+        OnKeyUp = DBGrid1KeyUp
         Columns = <
           item
             Expanded = False
@@ -203,7 +205,7 @@ object tnk: Ttnk
           Left = 688
           Top = 38
           Width = 177
-          Height = 24
+          Height = 23
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -218,7 +220,7 @@ object tnk: Ttnk
           Left = 688
           Top = 89
           Width = 177
-          Height = 24
+          Height = 23
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -13
@@ -277,10 +279,6 @@ object tnk: Ttnk
     object TabSheet2: TTabSheet
       Caption = #1058#1053#1050' '#1080#1079#1073#1088#1072#1085#1085#1086#1077
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
     end
   end
   object ADOConnection1: TADOConnection

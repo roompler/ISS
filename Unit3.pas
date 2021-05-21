@@ -41,6 +41,9 @@ type
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
+    procedure DBGrid1Gesture(Sender: TObject;
+      const EventInfo: TGestureEventInfo; var Handled: Boolean);
+    procedure DBGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -73,6 +76,14 @@ if checkbox1.Checked=true then
     adoquery2.ExecSQL;
     dbgrid1.SetFocus;
   end;
+
+if checkbox1.Checked=false then
+  begin
+  adoquery2.SQL.Clear;
+    adoquery2.SQL.Add('update TNK set fav="" where id='+a);
+    adoquery2.ExecSQL;
+    dbgrid1.SetFocus;
+  end;
 end;
 
 procedure Ttnk.DBGrid1CellClick(Column: TColumn);
@@ -90,6 +101,41 @@ else
 checkbox1.Checked:=false;
 
 end;
+
+procedure Ttnk.DBGrid1Gesture(Sender: TObject;
+  const EventInfo: TGestureEventInfo; var Handled: Boolean);
+var
+a:string;
+begin
+a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
+if a='yes' then checkbox1.Checked:=true;
+if a='' then checkbox1.Checked:=false;
+
+end;
+
+procedure Ttnk.DBGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+a:string;
+begin
+a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
+  if key=37 then begin
+  if a='yes' then checkbox1.Checked:=true;
+  if a='' then checkbox1.Checked:=false;
+  end;
+if key=38 then begin
+  if a='yes' then checkbox1.Checked:=true;
+  if a='' then checkbox1.Checked:=false;
+  end;
+if key=39 then begin
+  if a='yes' then checkbox1.Checked:=true;
+  if a='' then checkbox1.Checked:=false;
+  end;
+if key=40 then begin
+  if a='yes' then checkbox1.Checked:=true;
+  if a='' then checkbox1.Checked:=false;
+  end;
+end;
+
 
 procedure Ttnk.Edit1Change(Sender: TObject);
 var
@@ -150,14 +196,23 @@ edit1.Clear;
 end;
 
 procedure Ttnk.FormActivate(Sender: TObject);
+var
+a:string;
 begin
 pagecontrol1.Visible:=false;
 pagecontrol1.Visible:=true;
+a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
+if a='yes' then begin
+  checkbox1.Checked:=true;
+end
+else
+checkbox1.Checked:=false;
 end;
 
 procedure Ttnk.FormCreate(Sender: TObject);
 begin
 adoquery1.Active:=true;
+dbgrid1.SetFocus;
 end;
 
 end.
