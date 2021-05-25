@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.DBCtrls;
+  Vcl.DBGrids, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.DBCtrls, System.ImageList,
+  Vcl.ImgList;
 
 type
   Ttnk = class(TForm)
@@ -50,18 +51,14 @@ type
     Button3: TButton;
     Button4: TButton;
     Button5: TButton;
+    ImageList1: TImageList;
     procedure FormActivate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Edit2Change(Sender: TObject);
-    procedure DBGrid1CellClick(Column: TColumn);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure CheckBox1Click(Sender: TObject);
-    procedure DBGrid1Gesture(Sender: TObject;
-      const EventInfo: TGestureEventInfo; var Handled: Boolean);
-    procedure DBGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure PageControl1Change(Sender: TObject);
     procedure Edit3Change(Sender: TObject);
     procedure Edit4Change(Sender: TObject);
@@ -72,6 +69,9 @@ type
     procedure DBGrid2Gesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure DBGrid2KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid1DblClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -100,102 +100,79 @@ adoquery2.SQL.Clear;
 adoquery2.SQL.Add('update TNK set fav="no" where id='+a);
 adoquery2.ExecSQL;
 dbgrid2.SetFocus;
-adoquery1.Active:=false;
-adoquery3.Active:=false;
-adoquery1.Active:=true;
-adoquery3.Active:=true;
+adoquery1.Refresh;
+adoquery2.Refresh;
 button5.Enabled:=false;
 dbgrid2.SetFocus;
-
 a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
 if a='yes' then button5.Enabled:=true;
 if a='no' then button5.Enabled:=false;
-
-
 end;
 
-procedure Ttnk.CheckBox1Click(Sender: TObject);
+procedure Ttnk.DBGrid1DblClick(Sender: TObject);
 var
 i:integer;
-a:string;
-begin
-a:=dbgrid1.DataSource.DataSet.Fields.Fields[i].Value;
-if a='yes' then checkbox1.Checked:=true;
-if a='no' then checkbox1.Checked:=false;
-
-if checkbox1.Checked=true then
-  begin
-    adoquery2.Close;
-    adoquery2.SQL.Clear;
-    adoquery2.SQL.Add('update TNK set fav="yes" where id='+a);
-    adoquery2.ExecSQL;
-
-
-    dbgrid1.SetFocus;
-  end;
-
-if checkbox1.Checked=false then
-  begin
-  adoquery2.SQL.Clear;
-    adoquery2.SQL.Add('update TNK set fav="no" where id='+a);
-    adoquery2.ExecSQL;
-
-    dbgrid1.SetFocus;
-  end;
-end;
-
-procedure Ttnk.DBGrid1CellClick(Column: TColumn);
-var
-a :string;
+a,j:string;
 begin
 edit1.Clear;
 edit2.Clear;
-a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
+j:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
+a:=dbgrid1.DataSource.DataSet.Fields.Fields[i].Value;
 
-if a='yes' then begin
-  checkbox1.Checked:=true;
-end
-else
-checkbox1.Checked:=false;
+  if j='yes' then begin
+  adoquery2.SQL.Clear;
+  adoquery2.SQL.Add('update TNK set fav="no" where id='+a);
+  adoquery2.ExecSQL;
+  dbgrid1.Refresh;
+  adoquery1.Refresh;
+  end;
+  if j='no' then begin
+  adoquery2.SQL.Clear;
+  adoquery2.SQL.Add('update TNK set fav="yes" where id='+a);
+  adoquery2.ExecSQL;
+  adoquery1.Refresh;
+  end;
+
 
 end;
 
-procedure Ttnk.DBGrid1Gesture(Sender: TObject;
-  const EventInfo: TGestureEventInfo; var Handled: Boolean);
+
+
+
+procedure Ttnk.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+  DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
+bitmap:TBitmap;
+fixRect:TRect;
+bmpWidth:integer;
+imgIndex:integer;
 a:string;
 begin
 a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
-if a='yes' then checkbox1.Checked:=true;
-if a='no' then checkbox1.Checked:=false;
-
-end;
-
-procedure Ttnk.DBGrid1KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-var
-a:string;
-begin
-a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
-  if key=37 then begin
-  if a='yes' then checkbox1.Checked:=true;
-  if a='no' then checkbox1.Checked:=false;
-  end;
-if key=38 then begin
-  if a='yes' then checkbox1.Checked:=true;
-  if a='no' then checkbox1.Checked:=false;
-  end;
-if key=39 then begin
-  if a='yes' then checkbox1.Checked:=true;
-  if a='no' then checkbox1.Checked:=false;
-  end;
-if key=40 then begin
-  if a='yes' then checkbox1.Checked:=true;
-  if a='no' then checkbox1.Checked:=false;
+fixRect := Rect;
+// настройка поля 'LastName'
+if Column.FieldName='favorite' then
+  begin
+  //получение требуемого изображения
+  if a='yes' then
+      imgIndex := 0
+    else if a='no' then
+      imgIndex := 1;
+  bitmap := TBitmap.Create;
+    try
+      //получаем изображение из ImageList
+      //(используем значение поля "Salary")
+      ImageList1.GetBitmap(imgIndex, bitmap);
+      //Установить размеры изображения
+      bmpWidth := (Rect.Bottom - Rect.Top);
+      fixRect.Right := Rect.Left + bmpWidth;
+      //рисуем изображение
+      DBGrid1.Canvas.StretchDraw(fixRect, bitmap);
+    finally
+      bitmap.Free;
+    end;
   end;
 end;
-
-
-
 
 procedure Ttnk.DBGrid2CellClick(Column: TColumn);
 var
@@ -205,11 +182,8 @@ edit3.Clear;
 edit4.Clear;
 a:=dbgrid2.DataSource.DataSet.FieldByName('fav').AsString;
 
-if a='yes' then begin
-  button5.Enabled:=true;
-end
-else
-button5.Enabled:=false;
+if a='yes' then button5.Enabled:=true;
+if a='no' then button5.Enabled:=false;
 
 end;
 
@@ -366,12 +340,6 @@ a:string;
 begin
 pagecontrol1.Visible:=false;
 pagecontrol1.Visible:=true;
-a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
-if a='yes' then begin
-  checkbox1.Checked:=true;
-end
-else
-checkbox1.Checked:=false;
 end;
 
 procedure Ttnk.FormCreate(Sender: TObject);
@@ -380,23 +348,15 @@ adoquery1.Active:=true;
 adoquery3.Active:=true;
 end;
 
-
-
-
 procedure Ttnk.PageControl1Change(Sender: TObject);
 var
 a:string;
 begin
-adoquery1.Active:=false;
-adoquery3.Active:=false;
-adoquery1.Active:=true;
-adoquery3.Active:=true;
-
-
+adoquery1.Refresh;
+adoquery3.Refresh;
 a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
 if a='yes' then button5.Enabled:=true;
 if a='no' then button5.Enabled:=false;
-
 end;
 
 end.
