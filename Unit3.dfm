@@ -23,7 +23,7 @@ object tnk: Ttnk
     Top = 0
     Width = 881
     Height = 669
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     Align = alClient
     TabOrder = 0
     OnChange = PageControl1Change
@@ -42,6 +42,7 @@ object tnk: Ttnk
         FixedColor = clCream
         GradientStartColor = clOlive
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        PopupMenu = PopupMenu1
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -49,7 +50,6 @@ object tnk: Ttnk
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
         OnDrawColumnCell = DBGrid1DrawColumnCell
-        OnDblClick = DBGrid1DblClick
         Columns = <
           item
             Alignment = taRightJustify
@@ -102,7 +102,7 @@ object tnk: Ttnk
         Caption = #1056#1072#1089#1095#1077#1090' '#1088#1072#1073#1086#1095#1077#1075#1086' '#1074#1088#1077#1084#1077#1085#1080' '#1080' '#1086#1073#1098#1077#1084#1086#1074
         TabOrder = 1
         object DBText1: TDBText
-          Left = 504
+          Left = 528
           Top = 62
           Width = 65
           Height = 25
@@ -116,7 +116,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object DBText2: TDBText
-          Left = 504
+          Left = 528
           Top = 101
           Width = 41
           Height = 25
@@ -130,7 +130,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object DBText3: TDBText
-          Left = 551
+          Left = 575
           Top = 101
           Width = 74
           Height = 17
@@ -144,7 +144,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object Label1: TLabel
-          Left = 504
+          Left = 528
           Top = 40
           Width = 104
           Height = 16
@@ -157,7 +157,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object Label2: TLabel
-          Left = 504
+          Left = 528
           Top = 79
           Width = 79
           Height = 16
@@ -170,7 +170,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object DBText4: TDBText
-          Left = 504
+          Left = 528
           Top = 16
           Width = 129
           Height = 17
@@ -256,21 +256,13 @@ object tnk: Ttnk
           ParentFont = False
           TabOrder = 2
         end
-        object CheckBox1: TCheckBox
-          Left = 504
-          Top = 132
-          Width = 137
-          Height = 17
-          Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1074' '#1080#1079#1073#1088#1072#1085#1085#1086#1077'?'
-          TabOrder = 3
-        end
         object Button1: TButton
           Left = 688
           Top = 124
           Width = 81
           Height = 25
           Caption = #1057#1086#1079#1076#1072#1090#1100' '#1056#1047
-          TabOrder = 4
+          TabOrder = 3
         end
         object Button2: TButton
           Left = 784
@@ -278,7 +270,7 @@ object tnk: Ttnk
           Width = 81
           Height = 25
           Caption = #1042#1099#1093#1086#1076
-          TabOrder = 5
+          TabOrder = 4
           OnClick = Button2Click
         end
       end
@@ -299,6 +291,7 @@ object tnk: Ttnk
         FixedColor = clCream
         GradientStartColor = clOlive
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+        PopupMenu = PopupMenu2
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -531,7 +524,6 @@ object tnk: Ttnk
           Caption = #1059#1076#1072#1083#1080#1090#1100' '#1080#1079' '#1080#1079#1073#1088#1072#1085#1085#1086#1075#1086
           Enabled = False
           TabOrder = 5
-          OnClick = Button5Click
         end
       end
     end
@@ -584,7 +576,7 @@ object tnk: Ttnk
   object ImageList1: TImageList
     Left = 368
     Bitmap = {
-      494C010102000800140010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010102000800180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000001632
       5162000203040000000000000000000000000000000000000000000000000002
@@ -722,5 +714,22 @@ object tnk: Ttnk
       8001000100000000F81FF00F00000000FC3FF83F00000000FC3FFC3F00000000
       FE7FFE7F00000000FE7FFE7F0000000000000000000000000000000000000000
       000000000000}
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 228
+    Top = 168
+    object d1: TMenuItem
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100'/'#1059#1076#1072#1083#1080#1090#1100' '#1080#1079#1073#1088#1072#1085#1085#1086#1077'?'
+      OnClick = d1Click
+    end
+  end
+  object PopupMenu2: TPopupMenu
+    OnChange = PopupMenu2Change
+    Left = 492
+    Top = 208
+    object E1: TMenuItem
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1080#1079' '#1080#1079#1073#1088#1072#1085#1085#1086#1075#1086'?'
+      OnClick = E1Click
+    end
   end
 end

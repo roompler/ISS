@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.Grids,
   Vcl.DBGrids, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.DBCtrls, System.ImageList,
-  Vcl.ImgList;
+  Vcl.ImgList, Vcl.Menus;
 
 type
   Ttnk = class(TForm)
@@ -27,7 +27,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     DBText4: TDBText;
-    CheckBox1: TCheckBox;
     Label3: TLabel;
     Label4: TLabel;
     Button1: TButton;
@@ -52,6 +51,10 @@ type
     Button4: TButton;
     Button5: TButton;
     ImageList1: TImageList;
+    PopupMenu1: TPopupMenu;
+    d1: TMenuItem;
+    PopupMenu2: TPopupMenu;
+    E1: TMenuItem;
     procedure FormActivate(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
@@ -64,14 +67,16 @@ type
     procedure Edit4Change(Sender: TObject);
     procedure Edit4KeyPress(Sender: TObject; var Key: Char);
     procedure Edit3KeyPress(Sender: TObject; var Key: Char);
-    procedure Button5Click(Sender: TObject);
     procedure DBGrid2CellClick(Column: TColumn);
     procedure DBGrid2Gesture(Sender: TObject;
       const EventInfo: TGestureEventInfo; var Handled: Boolean);
     procedure DBGrid2KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure DBGrid1DblClick(Sender: TObject);
+    procedure d1Click(Sender: TObject);
+    procedure E1Click(Sender: TObject);
+    procedure PopupMenu2Change(Sender: TObject; Source: TMenuItem;
+      Rebuild: Boolean);
   private
     { Private declarations }
   public
@@ -90,54 +95,37 @@ begin
 tnk.Close;
 end;
 
-procedure Ttnk.Button5Click(Sender: TObject);
+procedure Ttnk.d1Click(Sender: TObject);
 var
 i:integer;
-a:string;
-begin
-a:=dbgrid2.DataSource.DataSet.Fields.Fields[i].Value;
-adoquery2.SQL.Clear;
-adoquery2.SQL.Add('update TNK set fav="no" where id='+a);
-adoquery2.ExecSQL;
-dbgrid2.SetFocus;
-adoquery1.Refresh;
-adoquery2.Refresh;
-button5.Enabled:=false;
-dbgrid2.SetFocus;
-a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
-if a='yes' then button5.Enabled:=true;
-if a='no' then button5.Enabled:=false;
-end;
-
-procedure Ttnk.DBGrid1DblClick(Sender: TObject);
-var
-i:integer;
-a,j:string;
+a,j,s:string;
 begin
 edit1.Clear;
 edit2.Clear;
 j:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
+s:=dbgrid1.DataSource.DataSet.FieldByName('tnk').AsString;
 a:=dbgrid1.DataSource.DataSet.Fields.Fields[i].Value;
 
   if j='yes' then begin
   adoquery2.SQL.Clear;
   adoquery2.SQL.Add('update TNK set fav="no" where id='+a);
   adoquery2.ExecSQL;
-  dbgrid1.Refresh;
-  adoquery1.Refresh;
+  adoquery1.Close;
+  adoquery1.Open;
+  ShowMessage('ТНК: '+s+' Удалена из избранного');
   end;
   if j='no' then begin
   adoquery2.SQL.Clear;
   adoquery2.SQL.Add('update TNK set fav="yes" where id='+a);
   adoquery2.ExecSQL;
-  adoquery1.Refresh;
+  adoquery1.Close;
+  adoquery1.Open;
+  ShowMessage('ТНК: '+s+' Добавлена в избранное');
   end;
 
 
+
 end;
-
-
-
 
 procedure Ttnk.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
@@ -218,6 +206,36 @@ if key=39 then begin
 if key=40 then begin
   if a='yes' then button5.Enabled:=true;
   if a='no' then button5.Enabled:=false;
+  end;
+
+end;
+
+procedure Ttnk.E1Click(Sender: TObject);
+var
+i:integer;
+a,j,s:string;
+begin
+edit3.Clear;
+edit4.Clear;
+j:=dbgrid2.DataSource.DataSet.FieldByName('fav').AsString;
+s:=dbgrid2.DataSource.DataSet.FieldByName('tnk').AsString;
+a:=dbgrid2.DataSource.DataSet.Fields.Fields[i].Value;
+
+  if j='yes' then begin
+  adoquery2.SQL.Clear;
+  adoquery2.SQL.Add('update TNK set fav="no" where id='+a);
+  adoquery2.ExecSQL;
+  adoquery3.Close;
+  adoquery3.Open;
+  ShowMessage('ТНК: '+s+' Удалена из избранного');
+  end;
+  if j='no' then begin
+  adoquery2.SQL.Clear;
+  adoquery2.SQL.Add('update TNK set fav="yes" where id='+a);
+  adoquery2.ExecSQL;
+  adoquery3.Close;
+  adoquery3.Open;
+  ShowMessage('ТНК: '+s+' Добавлена в избранное');
   end;
 
 end;
@@ -352,11 +370,21 @@ procedure Ttnk.PageControl1Change(Sender: TObject);
 var
 a:string;
 begin
-adoquery1.Refresh;
-adoquery3.Refresh;
+adoquery1.Active:=false;
+adoquery3.Active:=false;
+adoquery1.Active:=true;
+adoquery3.Active:=true;
 a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
 if a='yes' then button5.Enabled:=true;
 if a='no' then button5.Enabled:=false;
+end;
+
+procedure Ttnk.PopupMenu2Change(Sender: TObject; Source: TMenuItem;
+  Rebuild: Boolean);
+begin
+if tnk.dbgrid2.DataSource.DataSet.IsEmpty=true then E1.Visible:=false;
+if tnk.dbgrid2.DataSource.DataSet.IsEmpty=false then E1.Visible:=true;
+
 end;
 
 end.
