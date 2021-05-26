@@ -23,7 +23,7 @@ object tnk: Ttnk
     Top = 0
     Width = 881
     Height = 669
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
     TabOrder = 0
     OnChange = PageControl1Change
@@ -299,8 +299,6 @@ object tnk: Ttnk
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
         OnCellClick = DBGrid2CellClick
-        OnGesture = DBGrid2Gesture
-        OnKeyUp = DBGrid2KeyUp
         Columns = <
           item
             Expanded = False
@@ -345,7 +343,7 @@ object tnk: Ttnk
         Caption = #1056#1072#1089#1095#1077#1090' '#1088#1072#1073#1086#1095#1077#1075#1086' '#1074#1088#1077#1084#1077#1085#1080' '#1080' '#1086#1073#1098#1077#1084#1086#1074
         TabOrder = 1
         object DBText5: TDBText
-          Left = 504
+          Left = 528
           Top = 62
           Width = 65
           Height = 25
@@ -359,7 +357,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object DBText6: TDBText
-          Left = 504
+          Left = 528
           Top = 101
           Width = 41
           Height = 25
@@ -373,7 +371,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object DBText7: TDBText
-          Left = 551
+          Left = 575
           Top = 101
           Width = 74
           Height = 17
@@ -387,7 +385,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object Label5: TLabel
-          Left = 504
+          Left = 528
           Top = 40
           Width = 104
           Height = 16
@@ -400,7 +398,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object Label6: TLabel
-          Left = 504
+          Left = 528
           Top = 79
           Width = 79
           Height = 16
@@ -413,7 +411,7 @@ object tnk: Ttnk
           ParentFont = False
         end
         object DBText8: TDBText
-          Left = 504
+          Left = 528
           Top = 16
           Width = 129
           Height = 17
@@ -515,15 +513,6 @@ object tnk: Ttnk
           Caption = #1042#1099#1093#1086#1076
           TabOrder = 4
           OnClick = Button2Click
-        end
-        object Button5: TButton
-          Left = 504
-          Top = 124
-          Width = 137
-          Height = 25
-          Caption = #1059#1076#1072#1083#1080#1090#1100' '#1080#1079' '#1080#1079#1073#1088#1072#1085#1085#1086#1075#1086
-          Enabled = False
-          TabOrder = 5
         end
       end
     end

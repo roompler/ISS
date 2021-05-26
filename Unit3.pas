@@ -49,7 +49,6 @@ type
     DBMemo2: TDBMemo;
     Button3: TButton;
     Button4: TButton;
-    Button5: TButton;
     ImageList1: TImageList;
     PopupMenu1: TPopupMenu;
     d1: TMenuItem;
@@ -68,9 +67,6 @@ type
     procedure Edit4KeyPress(Sender: TObject; var Key: Char);
     procedure Edit3KeyPress(Sender: TObject; var Key: Char);
     procedure DBGrid2CellClick(Column: TColumn);
-    procedure DBGrid2Gesture(Sender: TObject;
-      const EventInfo: TGestureEventInfo; var Handled: Boolean);
-    procedure DBGrid2KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure d1Click(Sender: TObject);
@@ -163,51 +159,9 @@ if Column.FieldName='favorite' then
 end;
 
 procedure Ttnk.DBGrid2CellClick(Column: TColumn);
-var
-a :string;
 begin
 edit3.Clear;
 edit4.Clear;
-a:=dbgrid2.DataSource.DataSet.FieldByName('fav').AsString;
-
-if a='yes' then button5.Enabled:=true;
-if a='no' then button5.Enabled:=false;
-
-end;
-
-procedure Ttnk.DBGrid2Gesture(Sender: TObject;
-  const EventInfo: TGestureEventInfo; var Handled: Boolean);
-var
-a:string;
-begin
-a:=dbgrid2.DataSource.DataSet.FieldByName('fav').AsString;
-if a='yes' then button5.Enabled:=true;
-if a='no' then button5.Enabled:=false;
-
-end;
-
-procedure Ttnk.DBGrid2KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-var
-a:string;
-begin
-a:=dbgrid2.DataSource.DataSet.FieldByName('fav').AsString;
-  if key=37 then begin
-  if a='yes' then button5.Enabled:=true;
-  if a='no' then button5.Enabled:=false;
-  end;
-if key=38 then begin
-  if a='yes' then button5.Enabled:=true;
-  if a='no' then button5.Enabled:=false;
-  end;
-if key=39 then begin
-  if a='yes' then button5.Enabled:=true;
-  if a='no' then button5.Enabled:=false;
-  end;
-if key=40 then begin
-  if a='yes' then button5.Enabled:=true;
-  if a='no' then button5.Enabled:=false;
-  end;
-
 end;
 
 procedure Ttnk.E1Click(Sender: TObject);
@@ -367,16 +321,11 @@ adoquery3.Active:=true;
 end;
 
 procedure Ttnk.PageControl1Change(Sender: TObject);
-var
-a:string;
 begin
 adoquery1.Active:=false;
 adoquery3.Active:=false;
 adoquery1.Active:=true;
 adoquery3.Active:=true;
-a:=dbgrid1.DataSource.DataSet.FieldByName('fav').AsString;
-if a='yes' then button5.Enabled:=true;
-if a='no' then button5.Enabled:=false;
 end;
 
 procedure Ttnk.PopupMenu2Change(Sender: TObject; Source: TMenuItem;
