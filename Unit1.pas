@@ -28,9 +28,7 @@ type
     H1: TMenuItem;
     N15: TMenuItem;
     N16: TMenuItem;
-    procedure N4Click(Sender: TObject);
     procedure N15Click(Sender: TObject);
-    procedure N1Click(Sender: TObject);
     procedure N5Click(Sender: TObject);
     procedure N10Click(Sender: TObject);
   private
@@ -67,16 +65,6 @@ if n15.Caption='Режим невидимки Вкл.' then begin
   n15.Caption:='Режим невидимки Вкл.';
   ini.WriteString('Spider','Active','false');
   ini.Free;
-end;
-
-procedure TForm1.N1Click(Sender: TObject);
-begin
-incf.show;
-end;
-
-procedure TForm1.N4Click(Sender: TObject);
-begin
-incf.show;
 end;
 
 procedure TForm1.N5Click(Sender: TObject);

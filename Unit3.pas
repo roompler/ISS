@@ -73,6 +73,7 @@ type
     procedure E1Click(Sender: TObject);
     procedure PopupMenu2Change(Sender: TObject; Source: TMenuItem;
       Rebuild: Boolean);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -85,6 +86,13 @@ var
 implementation
 
 {$R *.dfm}
+
+uses Unit2;
+
+procedure Ttnk.Button1Click(Sender: TObject);
+begin
+rz.showmodal;
+end;
 
 procedure Ttnk.Button2Click(Sender: TObject);
 begin

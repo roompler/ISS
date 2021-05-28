@@ -4,7 +4,7 @@ object Form1: TForm1
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = #1048#1057#1057' '#1057#1058#1056#1045#1051#1040'-'#1052
-  ClientHeight = 296
+  ClientHeight = 276
   ClientWidth = 639
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -2136,7 +2136,7 @@ object Form1: TForm1
     Left = 0
     Top = 0
     Width = 639
-    Height = 296
+    Height = 276
     Align = alClient
     Picture.Data = {
       0A544A504547496D6167655DA10000FFD8FFE000104A46494600010101000100
@@ -3442,7 +3442,6 @@ object Form1: TForm1
       Caption = #1055#1083#1072#1085#1080#1088#1086#1074#1072#1085#1080#1077
       object N1: TMenuItem
         Caption = #1053#1077#1076#1077#1083#1100#1085#1086#1077' '#1087#1083#1072#1085#1080#1088#1086#1074#1072#1085#1080#1077#1082
-        OnClick = N1Click
       end
       object N2: TMenuItem
         Caption = #1057#1091#1090#1086#1095#1085#1086#1077' '#1087#1083#1072#1085#1080#1088#1086#1074#1072#1085#1080#1077
@@ -3460,7 +3459,6 @@ object Form1: TForm1
       Caption = #1045#1050' '#1040#1057#1059#1048
       object N4: TMenuItem
         Caption = #1048#1085#1094#1080#1076#1077#1085#1090#1099
-        OnClick = N4Click
       end
       object N6: TMenuItem
         Caption = #1056#1072#1073#1086#1095#1080#1077' '#1079#1072#1076#1072#1085#1080#1103

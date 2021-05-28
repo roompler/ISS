@@ -254,6 +254,7 @@ object tnk: Ttnk
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ReadOnly = True
           TabOrder = 2
         end
         object Button1: TButton
@@ -263,6 +264,7 @@ object tnk: Ttnk
           Height = 25
           Caption = #1057#1086#1079#1076#1072#1090#1100' '#1056#1047
           TabOrder = 3
+          OnClick = Button1Click
         end
         object Button2: TButton
           Left = 784
@@ -495,6 +497,7 @@ object tnk: Ttnk
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
+          ReadOnly = True
           TabOrder = 2
         end
         object Button3: TButton
@@ -565,7 +568,7 @@ object tnk: Ttnk
   object ImageList1: TImageList
     Left = 368
     Bitmap = {
-      494C010102000800180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101020008001C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000001632
       5162000203040000000000000000000000000000000000000000000000000002
